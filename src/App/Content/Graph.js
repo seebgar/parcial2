@@ -62,7 +62,7 @@ export default class Graph extends React.Component {
 
     const bars = g.selectAll("rect").data(data);
 
-    const bar = bars
+    bars
       .enter()
       .append("rect")
       .attr("class", "bar")

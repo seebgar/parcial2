@@ -87,7 +87,9 @@ class Content extends React.Component {
             className="uk-flex uk-flex-center uk-text-center"
           >
             <div>
-              <h1>Parcial 2 </h1>
+              <h1>
+              <FormattedMessage id="Title" />
+              </h1>
               <p className="uk-margin-remove">Sebastian Garcia 201630047</p>
               <hr />
             </div>
@@ -128,7 +130,7 @@ class Content extends React.Component {
                       <tr key={i}>
                         <td>{p.id}</td>
                         <td>
-                          <a href="#" onClick={_ => this.handleDetail(p)}>
+                          <a href onClick={_ => this.handleDetail(p)}>
                             {p.name}
                           </a>
                         </td>

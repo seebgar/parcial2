@@ -6,7 +6,8 @@ export default {
         "Budget": "Budget",
         "Release": "Release Date",
         "Views": "Views",
-        "Mss": "Select a Movie"
+        "Mss": "Select a Movie",
+        "Title": "Movies List"
     },
     'es-ES': {
         "Name": "Nombre",
@@ -15,6 +16,7 @@ export default {
         "Budget": "Presupuesto",
         "Release": "Fecha Lanzamiento",
         "Views": "Visitas",
-        "Mss": "Seleciona una pelicula"
+        "Mss": "Seleciona una pelicula",
+        "Title": "Peliculas"
     }
   };
