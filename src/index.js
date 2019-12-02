@@ -3,18 +3,25 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App/_Index/App";
 import * as serviceWorker from "./serviceWorker";
-import txt from './locales/txt'
-
+import txt from "./locales/txt";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import { IntlProvider, createIntlCache } from "react-intl";
 
 const cache = createIntlCache();
+/**
+ * * Default English
+ */
 const locale =
   (navigator.languages && navigator.languages[0]) ||
   navigator.language ||
   navigator.userLanguage ||
   "en-US";
+
+/**
+ * * Spanish
+ */
+// locale = "es-ES";
 
 ReactDOM.render(
   <IntlProvider

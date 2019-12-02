@@ -1,16 +1,26 @@
 import React from "react";
 import axios from "axios";
-import { FormattedDate, FormattedNumber, FormattedPlural } from "react-intl";
+import {
+  FormattedDate,
+  FormattedNumber,
+  FormattedMessage,
+  FormattedPlural
+} from "react-intl";
+
 import Detail from "./Detail";
+import { injectIntl } from "react-intl";
 
 const url_peliculas =
   "https://gist.githubusercontent.com/josejbocanegra/f784b189117d214578ac2358eb0a01d7/raw/2b22960c3f203bdf4fac44cc7e3849689218b8c0/data-es.json";
+const url_movies =
+  "https://gist.githubusercontent.com/josejbocanegra/8b436480129d2cb8d81196050d485c56/raw/48cc65480675bf8b144d89ecb8bcd663b05e1db0/data-en.json";
 
-export default class Content extends React.Component {
+class Content extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      intl: props.intl.locale,
       peliculas: [],
       selected: undefined
     };
@@ -32,7 +42,7 @@ export default class Content extends React.Component {
 
   get_peliculas() {
     axios
-      .get(url_peliculas)
+      .get(this.state.intl === "es-ES" ? url_peliculas : url_movies)
       .then(response => {
         this.setState(
           _ => {
@@ -61,6 +71,9 @@ export default class Content extends React.Component {
   }
 
   render() {
+    const m = this.props.intl === "es-ES" ? "millón" : "million";
+    const ms = this.props.intl === "es-ES" ? "millones" : "millions";
+
     return (
       <div style={{ margin: "5em 0em" }}>
         <div className="uk-container">
@@ -72,12 +85,24 @@ export default class Content extends React.Component {
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Director</th>
-                    <th>Country</th>
-                    <th>Budget</th>
-                    <th>Release</th>
-                    <th>Views</th>
+                    <th>
+                      <FormattedMessage id="Name" />
+                    </th>
+                    <th>
+                      <FormattedMessage id="Director" />
+                    </th>
+                    <th>
+                      <FormattedMessage id="Country" />
+                    </th>
+                    <th>
+                      <FormattedMessage id="Budget" />
+                    </th>
+                    <th>
+                      <FormattedMessage id="Release" />
+                    </th>
+                    <th>
+                      <FormattedMessage id="Views" />
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -86,11 +111,20 @@ export default class Content extends React.Component {
                       <tr key={i}>
                         <td>{p.id}</td>
                         <td>
-                          <a onClick={_ => this.handleDetail(p)}>{p.name}</a>
+                          <a href="#" onClick={_ => this.handleDetail(p)}>
+                            {p.name}
+                          </a>
                         </td>
                         <td>{p.directedBy}</td>
                         <td>{p.country}</td>
-                        <td>{p.budget}</td>
+                        <td>
+                          {p.budget + " "}
+                          <FormattedPlural
+                            value={p.budget}
+                            one={m}
+                            other={ms}
+                          />
+                        </td>
                         <td>
                           <FormattedDate
                             value={new Date(p.releaseDate)}
@@ -123,3 +157,5 @@ export default class Content extends React.Component {
     );
   }
 }
+
+export default injectIntl(Content);

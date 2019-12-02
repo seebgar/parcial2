@@ -1,22 +1,20 @@
 export default {
     'en-US': {
-        "Position": "Position",
-        "Company": "Company",
-        "Salary": "Salary",
-        "City": "City",
-        "PulibicationDate": "Pulibication Date",
-        "Visits": "Visits",
-        "Million": "millon",
-        "Millions": "millons"
+        "Name": "Name",
+        "Director": "Directed By",
+        "Country": "Country",
+        "Budget": "Budget",
+        "Release": "Release Date",
+        "Views": "Views",
+        "Mss": "Select a Movie"
     },
     'es-ES': {
-        "Position": "Nombre del cargo",
-        "Company": "Empresa",
-        "Salary": "Salario",
-        "City": "Ciudad",
-        "PulibicationDate": "Fecha de publicación",
-        "Visits": "No. Visitas",
-        "Million": "millón",
-        "Millions": "millones"
+        "Name": "Nombre",
+        "Director": "Director",
+        "Country": "País",
+        "Budget": "Presupuesto",
+        "Release": "Fecha Lanzamiento",
+        "Views": "Visitas",
+        "Mss": "Seleciona una pelicula"
     }
   };

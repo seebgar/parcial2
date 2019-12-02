@@ -1,5 +1,7 @@
 import React from "react";
 import './Detail.css'
+import { FormattedMessage } from "react-intl";
+
 
 export default function Detail(props) {
   return (
@@ -23,7 +25,11 @@ export default function Detail(props) {
           </div>
         </div>
       ) : (
-        <h3>Selecciona una pelicula</h3>
+        <div>
+          <p>
+            <FormattedMessage id="Mss" />
+          </p>
+        </div>
       )}
     </React.Fragment>
   );
