@@ -25,8 +25,4 @@ ReactIntl
 
 D3
 
-<<<<<<< HEAD
-> barras utilizadas en clase
-=======
-> barras utilizadas en clase
->>>>>>> 249f3d0b0d65d5fce63c995e5b02189ae83f3bab
+> grafico de barras
