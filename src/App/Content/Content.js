@@ -9,6 +9,7 @@ import {
 
 import Detail from "./Detail";
 import { injectIntl } from "react-intl";
+import Graph from "./Graph";
 
 const url_peliculas =
   "https://gist.githubusercontent.com/josejbocanegra/f784b189117d214578ac2358eb0a01d7/raw/2b22960c3f203bdf4fac44cc7e3849689218b8c0/data-es.json";
@@ -33,7 +34,8 @@ class Content extends React.Component {
     if (!navigator.onLine) {
       this.setState(_ => {
         return {
-          peliculas: JSON.parse(localStorage.getItem("peliculas")) || []
+          peliculas: JSON.parse(localStorage.getItem("peliculas")) || [],
+          selected: JSON.parse(localStorage.getItem("selected")) || {}
         };
       });
     }
@@ -55,16 +57,19 @@ class Content extends React.Component {
               "peliculas",
               JSON.stringify(this.state.peliculas)
             );
+            localStorage.setItem(
+              "selected",
+              JSON.stringify(this.state.selected)
+            );
           }
         );
       })
       .catch(err => {
-        console.log("--> Error Axios Get Exchange Rate", err);
+        console.log("--> Error Axios Get Movies", err);
       });
   }
 
   handleDetail(p) {
-    console.log("llego", p);
     this.setState(_ => {
       return { selected: p };
     });
@@ -76,10 +81,22 @@ class Content extends React.Component {
 
     return (
       <div style={{ margin: "5em 0em" }}>
+        <div className="uk-container uk-container-large">
+          <div
+            style={{ width: "100%" }}
+            className="uk-flex uk-flex-center uk-text-center"
+          >
+            <div>
+              <h1>Parcial 2 </h1>
+              <p className="uk-margin-remove">Sebastian Garcia 201630047</p>
+              <hr />
+            </div>
+          </div>
+        </div>
+
         <div className="uk-container">
           <div className="uk-flex">
             {/* TABLA */}
-
             <div className="uk-width-1-1@s">
               <table className="uk-table uk-table-striped">
                 <thead>
@@ -144,7 +161,6 @@ class Content extends React.Component {
             </div>
 
             {/* DETAIL */}
-
             <div
               className="uk-margin-left uk-width-1-1"
               style={{ padding: "2em" }}
@@ -152,6 +168,16 @@ class Content extends React.Component {
               <Detail pelicula={this.state.selected} />
             </div>
           </div>
+        </div>
+
+        {/* D3 */}
+
+        <div>
+          {this.state.peliculas.length > 0 ? (
+            <Graph data={this.state.peliculas} />
+          ) : (
+            <React.Fragment>&nbps;</React.Fragment>
+          )}
         </div>
       </div>
     );
